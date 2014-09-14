@@ -56,7 +56,7 @@ var watereff = {
     pond : null,
     textureImg : null,
     interval : null,
-    backgroundURL : 'images/rocks.jpg',
+    backgroundURL : '../images/rocks.jpg',
 
     // initialization
     init : function() {
