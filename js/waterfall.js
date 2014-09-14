@@ -51,24 +51,19 @@ var watereff = {
     refractions : 2,
     shading : 3,
     damping : 0.99,
-    screenWidth : 500,
-    screenHeight : 400,
+    screenWidth : 800,
+    screenHeight : 600,
     pond : null,
     textureImg : null,
     interval : null,
-    backgroundURL : 'data_images/underwater1.jpg',
+    backgroundURL : 'images/rocks.jpg',
 
     // initialization
     init : function() {
         var canvas = document.getElementById('water');
         if (canvas.getContext){
 
-            // fps countrt
-            fps = 0;
-            setInterval(function() { 
-                document.getElementById('fps').innerHTML = fps / 2 + ' FPS'; 
-                fps = 0;
-            }, 2000);
+           
 
             canvas.onmousemove = function(e) {
                 var mouse = watereff.getMousePosition(e).sub(new vector2d(canvas.offsetLeft, canvas.offsetTop));

@@ -1,25 +1,237 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset=utf-8 />
-        <title>Water drops effect</title>
-        <link rel="stylesheet" href="css/main.css" type="text/css" />
-        <script src="js/vector2d.js" type="text/javascript" charset="utf-8"></script>
-        <script src="js/waterfall.js" type="text/javascript" charset="utf-8"></script>
-    </head>
-    <body>
-        <div class="example">
-            <h3><a href="#">Water drops effect</a></h3>
+<html lang="en">
 
-            <canvas id="water">HTML5 compliant browser required</canvas>
-            <div id="switcher">
-                <img onclick='watereff.changePicture(this.src);' src="data_images/underwater1.jpg" />
-                <img onclick='watereff.changePicture(this.src);' src="data_images/underwater2.jpg" />
-            </div>
-            <div id="fps"></div>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>POND</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/full.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+
+
+.file {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+    </style>
+  
+  	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    
+
+    <!-- Put your page content here! -->
+ 	<div class="container">
+ 		<div class="row">
+ 			<div class="col-md-6">
+ 				<div class="header">
+ 					<h1 class="title">P O N D</h1>	
+ 					<img id="logo" src="images/mace.png"></img>
+ 				</div> 	
+ 			 <div class="col-md-6 col-md-offset-12"> 
+   				<button class="btn btn-primary btn-lg upload-button" data-toggle="modal" data-target="#uploadModal" align = "center">
+      				Upload!
+    			</button>
+    		</div>
+ 			</div>
+ 		</div>
+ 		<div class="row">
+ 			<canvas id="water">
+ 			
+
+ 			</canvas>
+ 			
+ 		</div>
+ 		<div class="row">
+ 			<div class="col-md-6 col-centered">
+			   <input type="search"
+               class="search-bar form-control glyphicon glyphicon-search"
+               placeholder="Search">
+
+			   <span ></span>        		
+
+               </input>
+   			</div>	
+   		
+ 		</div>
+ 		<img class="file" src="images/thumbnail.png"> </img>
+
+ 	</div>
+
+
+
+ 	<!-- Upload Modal -->
+ 	<!-- Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel"></h4>
+          </div>
+
+    <form method="post" class="dropzone form-horizontal" id="my-awesome-dropzone">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Plop Your File into the Pond</legend>
+
+    <!-- File Button --> 
+    <!--<form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form> -->
+
+        <div class="fallback">
+            <input name="file" id="dragdrop" type="file" multiple/>
         </div>
+       
+       <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
 
-        <hr style="clear:both;" />
-        <h4><a href="http://www.script-tutorials.com/how-to-create-water-drops-effect-using-html5-canvas/">back to original article page</a></h4>
-    </body>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="username">Name</label>  
+      <div class="col-md-4">
+        <input id="username" name="usernameupload" type="text" placeholder="Name of Uploader" class="form-control input-md" required="">
+      <span class="help-block">Enter your name</span>  
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="filename">File Name</label>  
+      <div class="col-md-4">
+      <input id="filename" name="filename" type="text" placeholder="Name of File" class="form-control input-md" required="">
+      <span class="help-block">Enter file name</span>  
+      </div>
+    </div>
+
+    <!-- Text input-->
+  <div class="form-group">
+  <label class="col-md-4 control-label" for="Lifetime">Lifetime</label>
+  	<div class="col-md-5">
+    	<div class="input-group">
+      	<input id="Lifetime" name="Lifetime" class="form-control" placeholder="Number" type="text" required="">
+      	<div class="input-group-btn">
+        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          Time
+        	  <span class="caret"></span>
+        	</button>
+        		<ul class="dropdown-menu pull-right">
+          			<li><a href="#">Minutes</a></li>
+          			<li><a href="#">Hours</a></li>
+        		</ul>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+
+
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password">Password</label>
+      <div class="col-md-4">
+        <input id="password" name="password" type="password" placeholder="Optional" class="form-control input-md">
+        <span class="help-block">Enter the password for your file</span>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="submit"></label>
+      <div class="col-md-4">
+        <input type="submit" value="Plop">
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./Upload Modal -->
+
+  
+    <!-- jQuery Version 1.11.0 -->
+    
+ 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/drag-drop.js"></script> -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="js/googlemaps.js"></script>
+    <script src="js/dropzone.js"></script>
+
+    <script src="js/pond.js"></script>
+    <script src="js/vector2d.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/waterfall.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+  	var theDiv = $(".file").position();
+  	var theContainer = $('.pond').position();
+    startAnimation();
+    function startAnimation(){
+    	  var  maxLeft = theContainer.top - theDiv.top,
+        maxTop = theContainer.height() - theDiv.height,
+        leftPos = Math.floor(Math.random() * maxLeft),
+        topPos = Math.floor(Math.random() * maxTop);
+        console.error("leftPos: %d",maxTop);
+
+        theDiv.animate({"left": 300,"top": 300}, "slow");
+        theDiv.animate({"left": 400,"top": 300}, "slow",startAnimation);
+
+    }
+
+    </script>
+  <!--  <script type="text/javascript">
+  
+    function AnimateIt(theDiv, theContainer) {
+     var  maxLeft = theContainer.width() - theDiv.width,
+        maxTop = theContainer.height() - theDiv.height,
+        leftPos = Math.floor(Math.random() * maxLeft),
+        topPos = Math.floor(Math.random() * maxTop);
+        console.log("once");
+    
+  
+   		theDiv.animate({
+        "left": leftPos,
+        "top": topPos
+    	});
+	}
+	var theDiv = $('.file');
+	var theContainer = $('.pond');
+	setInterval(function(){AnimateIt(theDiv,theContainer);}, 2000);
+    </script> -->
+
+    
+
+</body>
+
 </html>
