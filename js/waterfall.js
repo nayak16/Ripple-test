@@ -70,7 +70,7 @@ var watereff = {
                 fps = 0;
             }, 2000);
 
-            canvas.onmouseover = function(e) {
+            canvas.onmousemove = function(e) {
                 var mouse = watereff.getMousePosition(e).sub(new vector2d(canvas.offsetLeft, canvas.offsetTop));
                 watereff.pond.buffer1[mouse.y * watereff.pond.x + mouse.x ] += 200;
             }
